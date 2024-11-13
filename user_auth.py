@@ -32,6 +32,17 @@ def login():
     email = data.get('email')
     password = data.get('password')
 
+    if not email or not password:
+        return jsonify({'error': 'email and password are needed'}), 400
+
+    user = User.filter_by(email=email).first()
+    if not user:
+        return jsonify({'message': 'invalid credentials'}), 401
+
+    if user.password != encrypt_password(password):
+        return jsonify({'message': 'Invalid credentials'}), 401
+    return jsonify({'message': "successfully loggen in"}), 200
+
 
 def password_validation(password):
     if len(password) <= 6:
