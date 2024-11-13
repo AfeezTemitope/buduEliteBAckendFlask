@@ -28,3 +28,9 @@ class User(db.Model):
             db.session.rollback()
             print(f"Error saving user: {e}")
             return False
+
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)

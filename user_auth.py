@@ -35,7 +35,7 @@ def login():
     if not email or not password:
         return jsonify({'error': 'email and password are needed'}), 400
 
-    user = User.filter_by(email=email).first()
+    user = User.query.filter_by(email=email).first()
     if not user:
         return jsonify({'message': 'invalid credentials'}), 401
 
