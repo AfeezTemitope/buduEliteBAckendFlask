@@ -27,6 +27,12 @@ def register():
         return jsonify({'error': 'Registration failed'}), 500
 
 
+def login():
+    data = request.get_json()
+    email = data.get('email')
+    password = data.get('password')
+
+
 def password_validation(password):
     if len(password) <= 6:
         return 'Password length is too short'

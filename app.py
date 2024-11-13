@@ -20,13 +20,14 @@ app.register_blueprint(befa)
 # Initialize the database
 db.init_app(app)
 
+
 @app.route('/')
 def hello_world():
     return 'Hello World!'
 
+
 if __name__ == '__main__':
-    # Create all tables for development (optional for migrations)
     with app.app_context():
-        db.create_all()  # Avoid this in production, use migrations instead
+        db.create_all()
 
     app.run(debug=True)
